@@ -1,0 +1,48 @@
+{
+  "entry": "src/entry/*.js",
+  "disableCSSModules": false,
+  "multipage": true,
+  "hash": true,
+  "autoprefixer": {
+    "browsers": [
+        "last 2 versions"
+    ]
+  },
+  "html": {
+    "template": "./src/index.ejs"
+  },
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": true }]
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime",
+        "dva-hmr",
+        ["import", { "libraryName": "antd", "style": "css" }]
+      ]
+    }
+  },
+ "proxy": {
+    "/auth": {
+      "target": "http://yun.dev.choicesaas.cn",
+      "changeOrigin": true
+    },
+    "/api/": {
+      "target": "http://yun.dev.choicesaas.cn",
+      "changeOrigin": true
+    },
+    "/basicinfo/": {
+      "target": "http://yun.dev.choicesaas.cn",
+      "changeOrigin": true
+    },
+    "/plMerchant/": {
+      "target": "http://yun.dev.choicesaas.cn",
+      "changeOrigin": true
+    }
+  }
+}

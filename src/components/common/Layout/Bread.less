@@ -1,0 +1,30 @@
+@import "../../../themes/vars.less";
+@import "../../../common/public";
+
+.bread {
+  padding: 16px 32px;
+  background: #fff;
+  border-bottom: 1px solid @color-border;
+  position: relative;
+  :global{
+    .ant-breadcrumb{
+      .ant-breadcrumb-link{
+        font-size: 12px;
+        color: #999;
+      }
+      span{
+        &:last-child{
+          .ant-breadcrumb-link{
+            font-size: 16px;
+            color: #666;
+          }
+        }
+      }
+    }
+    .ant-form{
+      position: absolute;
+      top: 13px;
+      right: 0;
+    }
+  }
+}

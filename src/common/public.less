@@ -1,0 +1,163 @@
+@import "~bootstrap/less/bootstrap";
+@import "../../node_modules/antd/lib/style/themes/default.less";
+// 定义LESS公共方法。只在LESS文件中引用。
+//color
+@color-menu-selected: #108EE9;
+@color-menu-background: fade(@color-menu-selected,6%);
+@color-border: #E0E0E0;
+@color-background-toggle: #EAEAEA;
+// LINK
+@link-color: #1890ff;
+@link-hover-color: tint(@link-color, 20%);
+@link-active-color: shade(@link-color, 5%);
+@link-hover-decoration: underline;
+
+@form-item-height: 28px;
+@text-size: 12px;
+
+.bdr(@r: 2px) {
+  -ms-border-radius: @r;
+  -moz-border-radius: @r;
+  -webkit-border-radius: @r;
+  border-radius: @r;
+}
+
+.fts(@s: 1.4rem) {
+  font-size: @s;
+}
+
+.h-fts(@s: 1.6rem) {
+  font-size: @s;
+  font-weight: normal;
+}
+
+.bg-c(@c) {
+  background-color: @c;
+}
+
+.wh(@w, @h) {
+  width: @w;
+  height: @h;
+}
+
+//圆
+.circle(@r) {
+  .wh(@r, @r);
+  overflow: hidden;
+  .bdr(@r/2);
+}
+
+// 旋转  @d 角度
+.rotate(@d) {
+  -webkit-transform: rotate(@d);
+  -ms-transform: rotate(@d);
+  -moz-transform: rotate(@d);
+  transform: rotate(@d);
+}
+
+// transition动画
+.transition(@attr, @time) {
+  -ms-transition: @attr @time;
+  -moz-transition: @attr @time;
+  -webkit-transition: @attr @time;
+  transition: @attr @time;
+}
+
+// 下拉框实心三角  @w:width  @c:color
+.icon-arrow-down(@w, @c:#333) {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: @w solid @c;
+  border-left: @w solid transparent;
+  border-right: @w solid transparent;
+}
+
+//div指示性三角 @w:宽高 @d:旋转角度   @bc:background-color
+.arrow-box(@w, @d, @bc) {
+  content: '';
+  position: absolute;
+  .wh(@w, @w);
+  .rotate(@d);
+  background-color: @bc;
+}
+
+//超出文字 省略号   @w:width
+.text-over(@w: 100%) {
+  width: @w;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 超出文字 省略号 多行
+.text-over-lines(@line: 2) {
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box; //必需
+  -webkit-line-clamp: @line; //表示需要显示几行
+  -webkit-box-orient: vertical;
+}
+
+// box
+.display-box() {
+  display: flex; //IE
+  width: 100%; //火狐下，需要设置box当前元素的宽度
+
+}
+
+.display-box-flex(@flex: 1) {
+  flex: @flex; //IE
+  -moz-box-flex: @flex;
+  -webkit-box-flex: @flex;
+  box-flex: @flex;
+  overflow: hidden;
+}
+
+//box布局下元素的对齐方式 @d  left,center,end
+.box-pack(@d) {
+  -webkit-box-pack: @d;
+  box-pack: @d;
+}
+
+//a标签块级链接
+.a-block() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  .wh(100%, 100%);
+  z-index: 999;
+}
+
+//弹出层透明背景层  @p透明度
+.layer(@p: .5) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  .wh(100%, 100%);
+  background-color: rgba(0, 0, 0, @p);
+  z-index: 9999;
+}
+
+//渐变
+.gradient(@s, @e) {
+  background: -webkit-linear-gradient(top, @s, @e);
+  background: linear-gradient(top, @s, @e);
+  background: -webkit-gradient(linear, 0 0, 0 bottom, from(@s), to(@e));
+}
+
+//box 垂直水平居中显示
+.box-center() {
+  /* Firefox */
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  /* Safari、Opera 以及 Chrome */
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  box-pack: center;
+  box-align: center;
+}
+

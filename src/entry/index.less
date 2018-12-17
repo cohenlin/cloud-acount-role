@@ -1,0 +1,287 @@
+@import "../common/public.less";
+// ***common style
+html, body {
+  min-width: 1224px;
+  overflow-x: auto;
+}
+
+:global {
+  .container-cloud {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #f4f4f4;
+  }
+
+  // 菜单样式
+  .ant-menu{
+    .iconfont{
+      font-size: 14px;
+      min-width: 14px;
+      margin-right: 10px;
+    }
+  }
+  .ant-dropdown-menu{
+    .iconfont{
+      font-size: 14px;
+      min-width: 14px;
+      margin-right: 3px;
+    }
+  }
+
+  // link-btn
+  .btn-link {
+    color: @link-color;
+    font-weight: normal;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    &,
+    &:active,
+    &.active,
+    &[disabled],
+    fieldset[disabled] & {
+      background-color: transparent;
+      .box-shadow(none);
+    }
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: transparent;
+      outline: none;
+    }
+    &:hover,
+    &:focus {
+      color: @link-hover-color;
+      text-decoration: @link-hover-decoration;
+      background-color: transparent;
+      outline: none;
+    }
+    &[disabled],
+    fieldset[disabled] & {
+      &:hover,
+      &:focus {
+        color: @btn-link-disabled-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  // avatar-content styles
+  .avatar-content {
+    display: flex;
+    flex: 1;
+    &-avatar {
+      margin-right: 16px;
+      .ant-avatar {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    &-content {
+      flex: 1 0;
+    }
+    &-title {
+      color: @text-color;
+      margin-bottom: 4px;
+      font-size: 20px;
+      line-height: 1.5;
+      > a {
+        color: @text-color;
+        transition: all .3s;
+        &:hover {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+
+  .iframe-box {
+    .reportIframe {
+      overflow-y: scroll;
+    }
+    .iframe-spin{
+      text-align: center;
+      padding-top: 200px;
+      .ant-spin{
+        margin: 0 auto;
+      }
+    }
+    iframe {
+      overflow: hidden !important;
+    }
+    /*---隐藏滚动条---*/
+    iframe::-webkit-scrollbar {
+      width: 0px;
+      height: 0px;
+    }
+    scrollbar {
+      visibility: collapse !important;
+    }
+  }
+  .iframe-container {
+    .ant-card-body {
+      padding: 0 !important;
+    }
+  }
+  .div-container {
+    .ant-card-body {
+      padding: 24px 32px !important;
+    }
+  }
+  .page-side-menu {
+    .ant-menu-vertical .ant-menu-item-selected > a {
+      color: #fff;
+    }
+  }
+
+  // 新规样式
+  // 弹窗
+  .ant-modal-content {
+    .ant-modal-header {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      .ant-modal-title {
+        text-align: center;
+        font-size: 16px;
+        line-height: 44px;
+      }
+    }
+    .ant-modal-body {
+      padding: 32px !important;
+    }
+    .ant-modal-footer {
+      //padding-left: 32px;
+      //padding-right: 32px;
+      button + button {
+        margin-left: 16px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // 表单
+  .ant-form, .ant-form-inline {
+    .ant-form-item {
+      margin-bottom: 20px !important;
+      .ant-form-item-label {
+        line-height: 32px;
+        padding-left: 20px;
+        padding-bottom: 0;
+        label {
+          margin-bottom: 0;
+        }
+        label:after {
+          margin: 0 16px 0 2px;
+        }
+      }
+      .ant-form-item-control-wrapper{
+        min-height: 32px;
+      }
+      .ant-form-item-control {
+        line-height: 32px;
+      }
+    }
+  }
+
+  // 菜单
+  .ant-menu {
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  .ant-dropdown-menu-item,.ant-dropdown-menu-item-active{
+    line-height: 32px !important;
+    a,a:hover{
+      text-decoration: none;
+    }
+  }
+
+  // 表格
+  .ant-table {
+    .ant-table-thead {
+      th {
+        padding: 9px 12px;
+        font-weight: 600;
+        color: #666666;
+        min-height: 40px;
+      }
+    }
+    .ant-table-tbody {
+      td {
+        padding: 9px 12px;
+        color: #666666;
+        min-height: 40px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  // 按钮
+  .ant-btn {
+    min-width: 80px;
+  }
+
+  // badge
+  .ant-badge{
+    .ant-badge-status-text{
+      font-size: 12px;
+    }
+    .ant-badge-status-success+.ant-badge-status-text{
+      color: #52c41a;
+    }
+    .ant-badge-status-error+.ant-badge-status-text{
+      color: #f5222d;
+    }
+    .ant-badge-status-default+.ant-badge-status-text{
+      color: #d9d9d9;
+    }
+    .ant-badge-status-processing+.ant-badge-status-text{
+      color: #1890ff;
+    }
+    .ant-badge-status-warning+.ant-badge-status-text{
+      color: #faad14;
+    }
+  }
+
+  // divider
+  .ant-divider{
+    &.ant-divider-horizontal{
+      margin: 20px 0;
+    }
+  }
+
+  // search
+  .search {
+    .action-box{
+      margin-bottom: 16px;
+      .ant-btn+.ant-btn{
+        margin-left: 16px;
+      }
+      .search-btn{
+        text-align: right;
+      }
+    }
+  }
+  // 机构树选择框定高度只显示一行
+  .components-search{
+    label{
+      font-weight: normal;
+    }
+    .ant-select-selection__rendered{
+      height: 30px!important;
+      overflow: hidden;
+    }
+  }
+  // 应用订购页面图文详情展示
+  .appInfo{
+    width: 100%;
+    margin: auto;
+    white-space: normal;
+    word-break: break-all;
+  }
+}
+
+

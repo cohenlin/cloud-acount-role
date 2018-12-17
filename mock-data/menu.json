@@ -1,0 +1,424 @@
+{
+  "status": 200,
+  "msg": "SUCCESS",
+  "data": {
+    "secondMenu": {
+      "system": {
+        "app": [
+          {
+            "id": "sa01",
+            "bpid": null,
+            "mpid": null,
+            "name": "应用市场",
+            "icon": "appstore",
+            "route": "/system/app/market",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "sa02",
+            "bpid": null,
+            "mpid": null,
+            "name": "我的应用",
+            "icon": "inbox",
+            "route": "/system/app/myApp",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "sa03",
+            "bpid": "sa01",
+            "mpid": "-1",
+            "name": "订购应用",
+            "icon": "layout",
+            "route": "/system/app/order/:appId",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "sa04",
+            "bpid": "sa02",
+            "mpid": "-1",
+            "name": "管理应用",
+            "icon": "layout",
+            "route": "/system/app/manage/:id",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "sa05",
+            "bpid": null,
+            "mpid": null,
+            "name": "订单记录",
+            "icon": "file-text",
+            "route": "/system/app/orderRecord",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "sa06",
+            "bpid": null,
+            "mpid": "-1",
+            "name": "",
+            "icon": null,
+            "route": "/system/app/order/result/:type",
+            "key": null,
+            "applicationId": null
+          }
+        ],
+        "set": [
+          {
+            "id": "ss01",
+            "bpid": null,
+            "mpid": null,
+            "name": "商户资料",
+            "icon": "layout",
+            "route": "/system/set/businessInfo",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ss02",
+            "bpid": null,
+            "mpid": null,
+            "name": "员工设置",
+            "icon": "team",
+            "route": "/system/set/staff",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ss03",
+            "bpid": null,
+            "mpid": null,
+            "name": "机构设置",
+            "icon": "setting",
+            "route": "/system/set/organization",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ss04",
+            "bpid": null,
+            "mpid": null,
+            "name": "岗位角色",
+            "icon": "trademark",
+            "route": "/system/set/role",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ss05",
+            "bpid": null,
+            "mpid": null,
+            "name": "收款账号管理",
+            "icon": "pay-circle-o",
+            "route": "/system/set/receiptAccount",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ss06",
+            "bpid": "ss05",
+            "mpid": "-1",
+            "name": "配置第三方渠道",
+            "icon": "",
+            "route": "/system/set/receiptAccount/channel/:accId",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ss07",
+            "bpid": "ss05",
+            "mpid": "-1",
+            "name": "绑定门店管理",
+            "icon": "",
+            "route": "/system/set/receiptAccount/shop/:accId",
+            "key": null,
+            "applicationId": null
+          }
+        ]
+      },
+      "appPacks": {
+        "report": [
+          {
+            "id": "ar01",
+            "bpid": null,
+            "mpid": null,
+            "name": "Dashboard",
+            "icon": "laptop",
+            "route": "/appPacks/report/dashboard",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar02",
+            "bpid": null,
+            "mpid": null,
+            "name": "集团活动",
+            "icon": "calendar",
+            "route": "/appPacks/report/groupActivity",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar03",
+            "bpid": null,
+            "mpid": null,
+            "name": "集团收入",
+            "icon": "pay-circle-o",
+            "route": "/appPacks/report/groupIncome",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar04",
+            "bpid": null,
+            "mpid": null,
+            "name": "菜品销售排行榜",
+            "icon": "bars",
+            "route": "/appPacks/report/dishesSold",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar05",
+            "bpid": null,
+            "mpid": null,
+            "name": "菜品见台率",
+            "icon": "exception",
+            "route": "/appPacks/report/rateDishes",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar06",
+            "bpid": null,
+            "mpid": null,
+            "name": "单店收银统计",
+            "icon": "bank",
+            "route": "/appPacks/report/storeCashier",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar07",
+            "bpid": null,
+            "mpid": null,
+            "name": "台位类型销售统计表",
+            "icon": "trophy",
+            "route": "/appPacks/report/siteSale",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar08",
+            "bpid": null,
+            "mpid": null,
+            "name": "集团消退菜分析",
+            "icon": "tag-o",
+            "route": "/appPacks/report/groupRecession",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar09",
+            "bpid": null,
+            "mpid": null,
+            "name": "营业收入报告",
+            "icon": "copy",
+            "route": "/appPacks/report/operatingIncome",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar10",
+            "bpid": null,
+            "mpid": null,
+            "name": "营收报表",
+            "icon": "bar-chart",
+            "route": "/appPacks/report/revenue",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar11",
+            "bpid": null,
+            "mpid": null,
+            "name": "营业时段分析",
+            "icon": "bar-chart",
+            "route": "/appPacks/report/hourAnalysis",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar12",
+            "bpid": null,
+            "mpid": null,
+            "name": "现金优免分析",
+            "icon": "minus-square-o",
+            "route": "/appPacks/report/cashBenefit",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar13",
+            "bpid": null,
+            "mpid": null,
+            "name": "集团营业显示",
+            "icon": "minus-square-o",
+            "route": "/appPacks/report/groupBusiness",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar14",
+            "bpid": null,
+            "mpid": null,
+            "name": "台位人数统计分析",
+            "icon": "bar-chart",
+            "route": "/appPacks/report/tableStatistics",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar15",
+            "bpid": null,
+            "mpid": null,
+            "name": "套餐销售统计",
+            "icon": "bar-chart",
+            "route": "/appPacks/report/packageSales",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar16",
+            "bpid": null,
+            "mpid": null,
+            "name": "单店账单分析",
+            "icon": "exception",
+            "route": "/appPacks/report/billAnalysis",
+            "key": null,
+            "applicationId": null
+          },
+          {
+            "id": "ar17",
+            "bpid": null,
+            "mpid": null,
+            "name": "单店反结算分析",
+            "icon": "bar-chart",
+            "route": "/appPacks/report/antiSettlement",
+            "key": null,
+            "applicationId": null
+          }
+        ],
+        "demo": [
+          {
+            "id": "ad01",
+            "bpid": null,
+            "mpid": null,
+            "name": "会员管理",
+            "icon": "layout",
+            "route": "/appPacks/demo/member",
+            "key": null,
+            "applicationId": null
+          }
+        ]
+      }
+    },
+    "firstMenu": {
+      "system": [
+        {
+          "id": "sa",
+          "name": "应用",
+          "route": "/system/app/market"
+        },
+        {
+          "id": "ss",
+          "name": "设置",
+          "route": "/system/set/businessInfo"
+        }
+      ],
+      "appPacks": [
+        {
+          "id": "ad",
+          "name": "demo",
+          "route": "/appPacks/demo/member"
+        },
+        {
+          "id": "ar",
+          "name": "报表",
+          "route": "/appPacks/report/groupActivity"
+        }
+      ]
+    },
+    "pageVisit": {
+      "system": {
+        "app": [
+          "sa01",
+          "sa02",
+          "sa03",
+          "sa04",
+          "sa05",
+          "sa06"
+        ],
+        "set": [
+          "ss01",
+          "ss02",
+          "ss03",
+          "ss04",
+          "ss05",
+          "ss06",
+          "ss07"
+        ]
+      },
+      "appPacks": {
+        "report": [
+          "ar01",
+          "ar02",
+          "ar03",
+          "ar04",
+          "ar05",
+          "ar06",
+          "ar07",
+          "ar08",
+          "ar09",
+          "ar10",
+          "ar11",
+          "ar12",
+          "ar13",
+          "ar14",
+          "ar15",
+          "ar16",
+          "ar17"
+        ],
+        "demo": [
+          "ad01"
+        ]
+      }
+    },
+    "buttonPermissions": {
+      "system": {
+        "set": {
+          "role": {
+            "add": true,
+            "edit": true,
+            "delete": true,
+            "off": true,
+            "on": true
+          },
+          "staff": {
+            "add": true,
+            "edit": true,
+            "delete": true,
+            "off": true,
+            "on": true
+          },
+          "businessInfo": {
+            "edit": true
+          }
+        }
+      }
+    }
+  }
+}
