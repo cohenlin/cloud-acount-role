@@ -5,12 +5,14 @@ const list = ({
    onEdit,
    loading,
    postList,
-   roleButton,
+   postButton,
    listPagination,
-   rowSelection,
+   onSelectPost,
+   onDelectPost,
+   onChangeSorter,
    checkedPostId,
 }) => {
-  const disabled = roleButton && roleButton.edit;
+  const disabled = postButton && postButton.edit;
   const columns = [{
     title: '角色名称',
     dataIndex: 'postName',
@@ -45,9 +47,9 @@ const list = ({
   const rowSelection = {
     onSelect: (record, selected, selectedRows) => {
       if (!selected) {
-        onDelectStaff([record.id]);
+        onDelectPost([record.id]);
       } else {
-        onSelectStaff(selectedRows, [{ id: record.id, status: record.status }]);
+        onSelectPost(selectedRows, [{ id: record.id, status: record.status }]);
       }
     },
     onSelectAll: (selected, selectedRows, changeRows) => {
@@ -57,9 +59,9 @@ const list = ({
         return null;
       });
       if (!selected) {
-        onDelectStaff(changeRowsIds);
+        onDelectPost(changeRowsIds);
       } else {
-        onSelectStaff(selectedRows, changeRows);
+        onSelectPost(selectedRows, changeRows);
       }
     },
     selectedRowKeys: checkedPostId,
@@ -76,6 +78,7 @@ const list = ({
           bordered
           rowKey={record => record.id}
           rowSelection={rowSelection}
+          onChange={onChangeSorter}
         />
       </Col>
     </Row>
@@ -85,10 +88,12 @@ list.propTypes = {
   loading: PropTypes.bool,
   postList: PropTypes.array,
   listPagination: PropTypes.object,
-  roleButton: PropTypes.object,
+  postButton: PropTypes.object,
   onEdit: PropTypes.func,
-  rowSelection: PropTypes.object,
   checkedPostId: PropTypes.array,
+  onChangeSorter: PropTypes.func,
+  onSelectPost: PropTypes.func,
+  onDelectPost: PropTypes.func,
 };
 
 export default list;
