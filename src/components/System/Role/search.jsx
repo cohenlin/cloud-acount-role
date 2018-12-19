@@ -62,17 +62,17 @@ const feature = ({
     });
   };
   return (
-      <div className='components-search search'>
-    <div className="action-box">
-      <Row >
-        <Col span={16}>
-          {postButton && postButton.add && <Button type="primary" onClick={onAdd}>+ 新增角色</Button>}
-          {postButton && postButton.off && <Button onClick={showConfirm} value="停用" disabled={blockBtnStatus} loading={loading}>停用</Button>}
-          {postButton && postButton.on && <Button onClick={showConfirm} value="启用" disabled={startBtnStatus} loading={loading}>启用</Button>}
-          {postButton && postButton.delete && <Button onClick={showConfirm} value="删除" disabled={deleteBtnStatus} loading={loading}>删除</Button>}
-        </Col>
-      </Row>
-    </div>
+    <div className="components-search search">
+      <div className="action-box">
+        <Row >
+          <Col span={16}>
+            {postButton && postButton.add && <Button type="primary" onClick={onAdd}>+ 新增角色</Button>}
+            {postButton && postButton.off && <Button onClick={showConfirm} value="停用" disabled={!blockBtnStatus} loading={loading}>停用</Button>}
+            {postButton && postButton.on && <Button onClick={showConfirm} value="启用" disabled={!startBtnStatus} loading={loading}>启用</Button>}
+            {postButton && postButton.delete && <Button onClick={showConfirm} value="删除" disabled={!deleteBtnStatus} loading={loading}>删除</Button>}
+          </Col>
+        </Row>
+      </div>
     </div>);
 };
 feature.propTypes = {

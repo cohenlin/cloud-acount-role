@@ -64,7 +64,7 @@ const list = ({
         onSelectPost(selectedRows, changeRows);
       }
     },
-    selectedRowKeys: checkedPostId,
+    selectedRowKeys: checkedPostId, // 根据数组中的id，确认列表中的选中状态
   };
 
   return (<div>

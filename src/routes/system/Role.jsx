@@ -11,8 +11,10 @@ const Role = ({ dispatch, cloudState }) => {
         loading,
         roleList,
         postList,
+        postId,
         postName,
         postCode,
+        nodeIdList,
         listPagination,
         title,
         checkedPost,
@@ -22,6 +24,7 @@ const Role = ({ dispatch, cloudState }) => {
         blockBtnStatus,  // 停用按钮禁用状态
         checkedPostStartId, // 选中可停用员工id
         checkedPostBlockId, // 选中可启用员工id
+        checkedRoleKeys, // 新增界面选择权限树节点集合
     } = cloudState.role;
   // 取得Post页面的button权限
   const postButton = cloudState.account.buttonPermissions.system.set.role;
@@ -52,26 +55,101 @@ const Role = ({ dispatch, cloudState }) => {
         type: 'role/showModal',
       });
     },
-    onDelectPost() {
+    onDelectPost(ids) {
+      const checkedItems = []; // 剩余选中的元素数组
+      const checkedIds = []; // 剩余选中的元素ID
+      checkedPost.map((item) => {
+        if (ids.indexOf(item.id) < 0) { // checkedPost中的当前元素不在取消选中的数组中
+          checkedItems.push(item);
+          checkedIds.push(item.id);
+        }
+        return null;
+      });
+      // 更新state
+      dispatch({
+        type: 'role/updateState',
+        payload: {
+          checkedPost: checkedItems,
+          checkedPostId: checkedIds,
+        },
+      });
+      dispatch({
+        type: 'role/judgeStatus',
+      });
     },
     // 选择员工
-    onSelectPost() {
+    onSelectPost(selectedRows, record) {
+      const checkedItems = [];
+      const checkedIds = [];
+      record.map((item) => {
+        checkedItems.push({ id: item.id, status: item.status });// 记录选择的元素
+        checkedIds.push(item.id);// 记录选择的id
+        return null;
+      });
+      // 更新state
+      dispatch({
+        type: 'role/updateState',
+        payload: {
+          checkedPost: [...checkedPost, ...checkedItems],
+          checkedPostId: [...checkedPostId, ...checkedIds],
+        },
+      });
+      dispatch({
+        type: 'role/judgeStatus',
+      });
     },
-    onChangeSorter() {
+    // 触发翻页
+    onChangeSorter(pagination) {
+      dispatch({
+        type: 'role/queryList',
+        payload: {
+          pageno: pagination.current, // 查看第几页内容 默认1
+          rowcount: pagination.pageSize, // 一页展示条数 默认10
+          orderby: {},
+        },
+      });
     },
   };
   const modalProps = {
     visible, // 控制模态框显示
     loading, // 加载标识
     title, // 模态框标题
+    postId,
     postName,
     postCode,
+    nodeIdList,
     roleList,
+    postList,
+    checkedRoleKeys,
     onCancel() {
       dispatch({
         type: 'role/updateState',
         payload: {
           visible: false,
+        },
+      });
+    },
+    // 新增角色，提交表单
+    onSubmit(values) {
+      const {
+        post_name,
+        post_code,
+        node_id_list,
+      } = values;
+      dispatch({
+        type: 'role/savePost',
+        payload: {
+          postName: post_name,
+          postCode: post_code,
+          nodeIdList: node_id_list,
+        },
+      });
+    },
+    onCheck(checkedKeys) {
+      dispatch({
+        type: 'role/updateState',
+        payload: {
+          checkedRoleKeys: checkedKeys,
         },
       });
     },
@@ -90,9 +168,11 @@ const Role = ({ dispatch, cloudState }) => {
       dispatch({
         type: 'role/updateState',
         payload: {
-          postId: '',
-          postName: '',
-          postCode: 0,
+          postId: null,
+          postName: null,
+          postCode: null,
+          checkedRoleKeys: [],
+          title: '新增角色',
         },
       });
       dispatch({
@@ -106,7 +186,7 @@ const Role = ({ dispatch, cloudState }) => {
     onBlock() {
       const checkedPostIds = checkedPostStartId.join(',');
       dispatch({
-        type: 'role/enableOrDisable',
+        type: 'role/changeStatus',
         payload: {
           ids: checkedPostIds,
           status: '0',
@@ -119,9 +199,9 @@ const Role = ({ dispatch, cloudState }) => {
           checkedPost: [],
           checkedPostStartId: [], // 选中可停用员工id
           checkedPostBlockId: [], // 选中可启用员工id
-          deleteBtnStatus: true,
-          startBtnStatus: true,
-          blockBtnStatus: true,
+          deleteBtnStatus: false,
+          startBtnStatus: false,
+          blockBtnStatus: false,
         },
       });
     },
@@ -129,7 +209,7 @@ const Role = ({ dispatch, cloudState }) => {
     onStart() {
       const checkedPostIds = checkedPostBlockId.join(',');
       dispatch({
-        type: 'role/enableOrDisable',
+        type: 'role/changeStatus',
         payload: {
           ids: checkedPostIds,
           status: '1',
@@ -142,10 +222,9 @@ const Role = ({ dispatch, cloudState }) => {
           checkedPost: [],
           checkedPostStartId: [], // 选中可停用员工id
           checkedPostBlockId: [], // 选中可启用员工id
-          deleteBtnStatus: true,
-          startBtnStatus: true,
-          blockBtnStatus: true,
-
+          deleteBtnStatus: false,
+          startBtnStatus: false,
+          blockBtnStatus: false,
         },
       });
     },
@@ -165,9 +244,9 @@ const Role = ({ dispatch, cloudState }) => {
           checkedPost: [],
           checkedPostStartId: [], // 选中可停用员工id
           checkedPostBlockId: [], // 选中可启用员工id
-          deleteBtnStatus: true,
-          startBtnStatus: true,
-          blockBtnStatus: true,
+          deleteBtnStatus: false,
+          startBtnStatus: false,
+          blockBtnStatus: false,
         },
       });
     },

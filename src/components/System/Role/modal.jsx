@@ -26,17 +26,29 @@ const modal = ({
     postCode,
     roleList,
     onCancel,
+    onSubmit,
+    onCheck,
+    checkedRoleKeys, // 新增界面选中权限树节点集合
     form: {
-        getFieldDecorator,
+      validateFields,
+      getFieldDecorator,
     },
  }) => {
+  const handleOk = () => {
+    validateFields((errors, values) => {
+      if (!errors) {
+        onSubmit(values);
+      }
+    });
+  };
+
   const modalOpts = {
     width: 600,
     title,
     visible,
     cancelText: '取消',
     okText: '确定',
-    // onOk: handleOk,
+    onOk: handleOk,
     onCancel,
     confirmLoading: loading,
     maskClosable: false,
@@ -46,14 +58,12 @@ const modal = ({
     style: {
     },
   };
-
-  console.log(`postName: ${postName}`);
-
   // 下拉框属性
   const SelectProps = {
     dropdownMatchSelectWidth: false,
   };
 
+  // 递归构建权限树
   const loopTree = data => data.map((item) => {
     if (item.children && item.children.length) {
       return (
@@ -65,10 +75,10 @@ const modal = ({
     return <TreeNode title={item.menugroupsName} key={item.id} value={item.id} dataRef={item} />;
   });
 
-  const treeProps = {
-    allowClear: true,
-    checkable: true,
-  };
+  // 权重下拉框的选项
+  const opsList = [{ id: '9', postName: '总部管理员' }, { id: '2', postName: '门店管理员' }, { id: '3', postName: '门店员工' }];
+  const postOption = opsList.map(item =>
+    <Select.Option value={item.id} key={item.id}>{item.postName}</Select.Option>);
 
   return (
     <Modal {...modalOpts} >
@@ -77,7 +87,7 @@ const modal = ({
           <Col>
             <FormItem {...formItemLayout} label="角色名称" hasFeedback>
               {
-                getFieldDecorator('postName', {
+                getFieldDecorator('post_name', {
                   initialValue: postName,
                   rules: [{
                     required: true,
@@ -96,7 +106,7 @@ const modal = ({
             </FormItem>
 
             <FormItem {...formItemLayout} label="权重" hasFeedback>
-              {getFieldDecorator('postCode', {
+              {getFieldDecorator('post_code', {
                 initialValue: postCode,
                 rules: [
                   {
@@ -104,12 +114,19 @@ const modal = ({
                     message: '权重不能为空',
                   },
                 ],
-              })(<Select placeholder="请选择权重" {...SelectProps} />)}
+              })(<Select placeholder="请选择权重" {...SelectProps}>
+                { postOption }
+              </Select>)}
             </FormItem>
 
             <FormItem {...formItemLayout} label="权限" hasFeedback>
-              {getFieldDecorator('nodeIdList')(
-                <Tree {...treeProps}>
+              {getFieldDecorator('node_id_list')(
+                <Tree
+                  allowClear
+                  checkable
+                  checkedKeys={checkedRoleKeys}
+                  onCheck={onCheck}
+                >
                   {loopTree(roleList || [])}
                 </Tree>)}
             </FormItem>
@@ -128,7 +145,10 @@ modal.propTypes = {
   postName: PropTypes.string,
   postCode: PropTypes.number,
   onCancel: PropTypes.func,
+  onSubmit: PropTypes.func,
   roleList: PropTypes.array,
+  checkedRoleKeys: PropTypes.array,
+  onCheck: PropTypes.func,
 };
 
 export default Form.create()(modal);

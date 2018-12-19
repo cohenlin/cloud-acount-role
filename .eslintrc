@@ -31,7 +31,7 @@
     "max-statements": [2, 50],
     "max-nested-callbacks": [2, 3],
     "camelcase": 2,
-    // "linebreak-style": ["error", "windows"]//允许windows开发环境
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "max-len":"off"
   }
 }
